@@ -1,0 +1,738 @@
+<!DOCTYPE html>
+<html lang="ru">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <meta name="theme-color" content="#f5f0e9" />
+  <meta name="description" content="Свадебное приглашение Полины и Семёна" />
+  <title>Полина & Семён — свадебное приглашение</title>
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link href="https://fonts.googleapis.com/css2?family=Cormorant+Garamond:wght@400;500;600;700&family=Manrope:wght@400;500;600&display=swap" rel="stylesheet">
+  <style>
+    :root{
+      --bg:#f7f2ec;
+      --bg-soft:#fcf9f5;
+      --surface:rgba(255,255,255,.68);
+      --surface-strong:rgba(255,255,255,.86);
+      --line:rgba(73,58,48,.12);
+      --line-strong:rgba(73,58,48,.18);
+      --text:#2d2622;
+      --muted:#766b63;
+      --accent:#b7a08e;
+      --accent-deep:#8f7868;
+      --sand:#bfa48d;
+      --nude:#d8c6b6;
+      --mist:#cfcfcf;
+      --sage:#aeb8b1;
+      --sky:#b8c3d6;
+      --lilac:#d6c2d6;
+      --blush:#f1d6e0;
+      --shadow:0 18px 60px rgba(62,45,36,.08);
+      --radius-xl:34px;
+      --radius-lg:26px;
+      --radius-md:20px;
+      --radius-sm:16px;
+      --container:980px;
+    }
+    *{box-sizing:border-box}
+    html{scroll-behavior:smooth}
+    body{
+      margin:0;
+      font-family:'Manrope',system-ui,-apple-system,BlinkMacSystemFont,'Segoe UI',sans-serif;
+      color:var(--text);
+      background:
+        radial-gradient(circle at top left, rgba(232,219,201,.55), transparent 34%),
+        radial-gradient(circle at top right, rgba(221,193,187,.25), transparent 28%),
+        linear-gradient(180deg,#faf6f1 0%,#f7f2ec 50%,#faf7f3 100%);
+      line-height:1.65;
+      -webkit-font-smoothing:antialiased;
+      text-rendering:optimizeLegibility;
+      overflow-x:hidden;
+    }
+    a{text-decoration:none;color:inherit}
+    button,input,textarea{font:inherit}
+    button{cursor:pointer;border:none}
+    .shell{
+      width:min(calc(100% - 24px),var(--container));
+      margin:14px auto 26px;
+    }
+    .section{
+      position:relative;
+      padding:24px 18px;
+      margin-bottom:14px;
+      background:linear-gradient(180deg,var(--surface-strong),var(--surface));
+      border:1px solid var(--line);
+      border-radius:var(--radius-xl);
+      box-shadow:var(--shadow);
+      overflow:hidden;
+      backdrop-filter: blur(10px);
+    }
+    .section::before{
+      content:"";
+      position:absolute;
+      inset:0;
+      background:linear-gradient(180deg,rgba(255,255,255,.24),transparent 28%);
+      pointer-events:none;
+    }
+    .hero{
+      min-height:min(100svh - 28px,920px);
+      display:grid;
+      align-items:center;
+      padding:26px 18px 22px;
+    }
+    .hero-inner,.section-inner{position:relative;z-index:1}
+    .hero-inner{display:grid;gap:20px;text-align:center}
+    .hero-badge{
+      width:fit-content;
+      margin:0 auto;
+      padding:10px 16px;
+      border-radius:999px;
+      border:1px solid var(--line);
+      background:rgba(255,255,255,.52);
+      color:var(--muted);
+      font-size:12px;
+      letter-spacing:.18em;
+      text-transform:uppercase;
+    }
+    .eyebrow{
+      display:inline-flex;
+      align-items:center;
+      gap:10px;
+      font-size:12px;
+      letter-spacing:.28em;
+      text-transform:uppercase;
+      color:var(--muted);
+    }
+    .eyebrow::before,.eyebrow::after{
+      content:"";
+      width:18px;height:1px;background:var(--line-strong);
+    }
+    h1,.title,.names,.final-phrase{
+      font-family:'Cormorant Garamond',Georgia,serif;
+      letter-spacing:.01em;
+      line-height:.95;
+      margin:0;
+      font-weight:600;
+    }
+    h1{font-size:clamp(34px,10vw,74px);font-weight:500}
+    .names{font-size:clamp(48px,13vw,104px);line-height:.88;margin-top:-4px}
+    .hero-subtitle{
+      max-width:390px;
+      margin:0 auto;
+      color:var(--muted);
+      font-size:15px;
+      letter-spacing:.08em;
+      text-transform:uppercase;
+    }
+    .hero-meta{
+      display:grid;gap:12px;max-width:620px;margin:0 auto;
+    }
+    .meta-card{
+      padding:16px 18px;
+      border-radius:22px;
+      border:1px solid var(--line);
+      background:rgba(255,255,255,.46);
+    }
+    .meta-label{
+      color:var(--muted);
+      font-size:11px;
+      letter-spacing:.18em;
+      text-transform:uppercase;
+      margin-bottom:6px;
+    }
+    .meta-value{
+      font-size:18px;
+      font-weight:600;
+      line-height:1.4;
+    }
+    .meta-sub{color:var(--muted);font-size:14px;margin-top:3px}
+    .countdown{
+      display:grid;
+      grid-template-columns:repeat(4,1fr);
+      gap:10px;
+      margin-top:4px;
+    }
+    .count-box{
+      padding:16px 10px;
+      border-radius:22px;
+      border:1px solid var(--line);
+      background:rgba(255,255,255,.48);
+    }
+    .count-num{
+      font-family:'Cormorant Garamond',Georgia,serif;
+      font-size:clamp(30px,8vw,54px);
+      line-height:.9;
+      margin-bottom:8px;
+    }
+    .count-label{
+      color:var(--muted);
+      font-size:11px;
+      letter-spacing:.16em;
+      text-transform:uppercase;
+    }
+    .hero-actions{display:flex;justify-content:center;gap:10px;flex-wrap:wrap}
+    .btn,.btn-secondary{
+      display:inline-flex;align-items:center;justify-content:center;
+      min-height:54px;
+      padding:0 22px;
+      border-radius:999px;
+      transition:.25s ease;
+      font-weight:600;
+    }
+    .btn{
+      color:#fff;
+      background:linear-gradient(135deg,var(--accent-deep),var(--accent));
+      box-shadow:0 10px 26px rgba(143,120,104,.26);
+    }
+    .btn:hover{transform:translateY(-1px);box-shadow:0 14px 30px rgba(143,120,104,.30)}
+    .btn-secondary{
+      border:1px solid var(--line);
+      background:rgba(255,255,255,.54);
+      color:var(--text);
+    }
+    .section-header{
+      position:relative;z-index:1;
+      display:grid;gap:12px;margin-bottom:20px;
+    }
+    .title{font-size:clamp(34px,8vw,58px)}
+    .lead{margin:0;color:var(--muted);font-size:15px}
+    .text-card,.rsvp-card,.timeline-card,.gift-card{
+      position:relative;z-index:1;
+      padding:20px;
+      border-radius:26px;
+      border:1px solid var(--line);
+      background:rgba(255,255,255,.48);
+    }
+    .invitation-text{margin:0;white-space:pre-line;font-size:16px}
+    .date-accent{
+      margin-top:16px;
+      display:inline-flex;
+      padding:10px 16px;
+      border-radius:999px;
+      background:rgba(232,219,201,.58);
+      border:1px solid rgba(143,120,104,.14);
+      letter-spacing:.08em;
+      text-transform:uppercase;
+      font-size:13px;
+      color:var(--accent-deep);
+    }
+    .timeline{
+      position:relative;z-index:1;
+      display:grid;gap:14px;
+    }
+    .timeline-item{
+      display:grid;grid-template-columns:92px 1fr;gap:14px;align-items:start;
+      padding:16px;border-radius:22px;border:1px solid var(--line);
+      background:rgba(255,255,255,.5);
+    }
+    .timeline-time{
+      font-family:'Cormorant Garamond',Georgia,serif;
+      font-size:34px;
+      line-height:.9;
+    }
+    .timeline-title{font-size:17px;font-weight:600;margin-bottom:2px}
+    .timeline-note{font-size:14px;color:var(--muted)}
+    .palette{
+      position:relative;z-index:1;
+      display:grid;grid-template-columns:repeat(7,1fr);gap:12px;
+    }
+    .swatch{
+      display:grid;gap:10px;justify-items:center;
+      padding:14px 10px;border-radius:22px;border:1px solid var(--line);
+      background:rgba(255,255,255,.48);
+    }
+    .swatch-circle{
+      width:58px;height:58px;border-radius:50%;
+      border:1px solid rgba(0,0,0,.06);
+      box-shadow:inset 0 1px 1px rgba(255,255,255,.45);
+    }
+    .swatch-label{font-size:13px;color:var(--muted);text-align:center}
+    .field-grid{
+      position:relative;z-index:1;
+      display:grid;gap:14px;
+    }
+    .field{display:grid;gap:8px}
+    .label{
+      font-size:12px;
+      letter-spacing:.16em;
+      text-transform:uppercase;
+      color:var(--muted);
+    }
+    .input,.textarea{
+      width:100%;
+      border:1px solid var(--line);
+      border-radius:18px;
+      background:rgba(255,255,255,.72);
+      color:var(--text);
+      padding:16px 18px;
+      outline:none;
+      transition:.22s ease;
+    }
+    .input:focus,.textarea:focus{
+      border-color:rgba(143,120,104,.35);
+      box-shadow:0 0 0 4px rgba(183,160,142,.12);
+    }
+    .textarea{min-height:120px;resize:vertical}
+    .checks{
+      display:grid;
+      grid-template-columns:repeat(2,minmax(0,1fr));
+      gap:10px;
+    }
+    .check{
+      position:relative;
+      display:flex;
+      align-items:center;
+      gap:12px;
+      padding:14px 16px;
+      border-radius:18px;
+      border:1px solid var(--line);
+      background:rgba(255,255,255,.58);
+      cursor:pointer;
+      transition:.2s ease;
+    }
+    .check:hover{transform:translateY(-1px)}
+    .check input{
+      appearance:none;
+      width:20px;height:20px;border-radius:6px;
+      border:1px solid var(--line-strong);
+      background:#fff;
+      display:grid;place-items:center;flex:0 0 auto;
+      margin:0;
+    }
+    .check input:checked{
+      background:linear-gradient(135deg,var(--accent-deep),var(--accent));
+      border-color:transparent;
+    }
+    .check input:checked::after{
+      content:"";
+      width:9px;height:9px;border-radius:2px;background:#fff;
+    }
+    .check span{font-size:15px}
+    .hint{font-size:13px;color:var(--muted);margin-top:-2px}
+    .rsvp-actions{display:flex;gap:10px;flex-wrap:wrap;margin-top:6px}
+    .mini-note{
+      font-size:13px;color:var(--muted);
+      padding:13px 14px;border-radius:16px;
+      background:rgba(255,255,255,.5);border:1px solid var(--line);
+    }
+    .final{
+      text-align:center;
+      padding-top:34px;
+      padding-bottom:34px;
+    }
+    .final-phrase{font-size:clamp(42px,10vw,74px)}
+    .final-note{margin:14px 0 0;color:var(--muted)}
+    .footer-sign{
+      margin-top:20px;
+      display:inline-flex;
+      padding:8px 14px;
+      border-radius:999px;
+      background:rgba(255,255,255,.44);
+      border:1px solid var(--line);
+      color:var(--muted);
+      font-size:12px;
+      letter-spacing:.16em;
+      text-transform:uppercase;
+    }
+    .fade-up{
+      opacity:0;
+      transform:translateY(26px);
+      transition:opacity .8s ease, transform .8s ease;
+    }
+    .fade-up.show{opacity:1;transform:translateY(0)}
+    .toast{
+      position:fixed;
+      left:50%;
+      bottom:18px;
+      transform:translateX(-50%) translateY(24px);
+      width:min(calc(100% - 24px), 460px);
+      padding:14px 16px;
+      border-radius:18px;
+      background:rgba(43,36,31,.92);
+      color:#fff;
+      font-size:14px;
+      box-shadow:0 14px 30px rgba(0,0,0,.24);
+      opacity:0;
+      pointer-events:none;
+      transition:.28s ease;
+      z-index:20;
+    }
+    .toast.show{opacity:1;transform:translateX(-50%) translateY(0)}
+    @media (min-width: 720px){
+      .section{padding:34px}
+      .hero{padding:42px}
+      .field-grid{
+        grid-template-columns:1.1fr .9fr;
+        align-items:start;
+      }
+      .field-grid .full{grid-column:1 / -1}
+    }
+    @media (max-width: 640px){
+      .countdown{grid-template-columns:repeat(2,1fr)}
+      .palette{grid-template-columns:repeat(4,1fr)}
+      .checks{grid-template-columns:1fr}
+      .timeline-item{grid-template-columns:76px 1fr}
+      .timeline-time{font-size:30px}
+    }
+  </style>
+</head>
+<body>
+  <main class="shell">
+    <section class="section hero">
+      <div class="hero-inner">
+        <div class="hero-badge">Она сказала да</div>
+        <div class="eyebrow" style="justify-content:center;">приглашают на свадьбу</div>
+        <div class="names">Полина &amp; Семён</div>
+        <p class="hero-subtitle">06 июня 2026 года · суббота · 16:00</p>
+
+        <div class="hero-meta">
+          <div class="meta-card">
+            <div class="meta-label">Место</div>
+            <div class="meta-value">Ресторан «Кинкали»</div>
+            <div class="meta-sub">г. Пермь, ул. Белинского, 6Б</div>
+          </div>
+        </div>
+
+        <div class="countdown" aria-label="Обратный отсчёт до свадьбы">
+          <div class="count-box">
+            <div class="count-num" id="days">000</div>
+            <div class="count-label">дней</div>
+          </div>
+          <div class="count-box">
+            <div class="count-num" id="hours">00</div>
+            <div class="count-label">часов</div>
+          </div>
+          <div class="count-box">
+            <div class="count-num" id="minutes">00</div>
+            <div class="count-label">минут</div>
+          </div>
+          <div class="count-box">
+            <div class="count-num" id="seconds">00</div>
+            <div class="count-label">секунд</div>
+          </div>
+        </div>
+
+        <div class="hero-actions">
+          <a class="btn" href="#rsvp">Подтвердить присутствие</a>
+          <a class="btn-secondary" href="#schedule">Программа дня</a>
+        </div>
+      </div>
+    </section>
+
+    <section class="section fade-up" id="invite">
+      <div class="section-header">
+        <span class="eyebrow">Приглашение</span>
+        <h2 class="title">Дорогие родные и близкие!</h2>
+      </div>
+      <div class="text-card">
+        <p class="invitation-text">Мы с радостью приглашаем вас разделить с нами один из самых важных и счастливых дней в нашей жизни — день нашей свадьбы.
+
+Для нас очень ценно, чтобы в этот момент рядом были самые близкие, любимые и дорогие сердцу люди.
+Будем счастливы провести этот день вместе с вами, наполнить его улыбками, тёплыми словами и красивыми воспоминаниями.</p>
+        <div class="date-accent">06.06.2026 · 16:00</div>
+      </div>
+    </section>
+
+    <section class="section fade-up" id="schedule">
+      <div class="section-header">
+        <span class="eyebrow">Программа дня</span>
+        <h2 class="title">Программа дня</h2>
+        <p class="lead">Ниже собрали важные моменты нашего праздника.</p>
+      </div>
+      <div class="timeline">
+        <div class="timeline-item">
+          <div class="timeline-time">16:00</div>
+          <div>
+            <div class="timeline-title">Сбор гостей</div>
+            <div class="timeline-note">Будем рады встретить вас и начать этот вечер вместе.</div>
+          </div>
+        </div>
+        <div class="timeline-item">
+          <div class="timeline-time">16:30</div>
+          <div>
+            <div class="timeline-title">Регистрация</div>
+            <div class="timeline-note">Трогательный момент, который нам особенно хочется разделить с вами.</div>
+          </div>
+        </div>
+        <div class="timeline-item">
+          <div class="timeline-time">17:00</div>
+          <div>
+            <div class="timeline-title">Банкет</div>
+            <div class="timeline-note">Тёплые слова, вкусный ужин и красивые воспоминания.</div>
+          </div>
+        </div>
+        <div class="timeline-item">
+          <div class="timeline-time">23:00</div>
+          <div>
+            <div class="timeline-title">Завершение вечера</div>
+            <div class="timeline-note">Пусть этот день надолго останется в памяти у каждого из нас.</div>
+          </div>
+        </div>
+      </div>
+    </section>
+
+    <section class="section fade-up" id="gifts">
+      <div class="section-header">
+        <span class="eyebrow">Пожелания по подаркам</span>
+        <h2 class="title">Пожелания по подаркам</h2>
+      </div>
+      <div class="gift-card">
+        <p class="lead" style="margin:0;color:var(--text);font-size:16px;">Ваше присутствие в этот день — уже большой подарок для нас. Но если вы захотите порадовать нас дополнительно, будем благодарны за вклад в наш семейный бюджет.</p>
+      </div>
+    </section>
+
+    <section class="section fade-up" id="dresscode">
+      <div class="section-header">
+        <span class="eyebrow">Дресс-код</span>
+        <h2 class="title">Дресс-код</h2>
+        <p class="lead">Будем признательны, если в выборе нарядов Вы отдадите предпочтение пастельным оттенкам.</p>
+      </div>
+      <div class="palette">
+        <div class="swatch">
+          <div class="swatch-circle" style="background:var(--sand)"></div>
+          <div class="swatch-label">Песочный</div>
+        </div>
+        <div class="swatch">
+          <div class="swatch-circle" style="background:var(--nude)"></div>
+          <div class="swatch-label">Нюдовый</div>
+        </div>
+        <div class="swatch">
+          <div class="swatch-circle" style="background:var(--mist)"></div>
+          <div class="swatch-label">Светло-серый</div>
+        </div>
+        <div class="swatch">
+          <div class="swatch-circle" style="background:var(--sage)"></div>
+          <div class="swatch-label">Шалфейный</div>
+        </div>
+        <div class="swatch">
+          <div class="swatch-circle" style="background:var(--sky)"></div>
+          <div class="swatch-label">Голубой</div>
+        </div>
+        <div class="swatch">
+          <div class="swatch-circle" style="background:var(--lilac)"></div>
+          <div class="swatch-label">Лавандовый</div>
+        </div>
+        <div class="swatch">
+          <div class="swatch-circle" style="background:var(--blush)"></div>
+          <div class="swatch-label">Розовый</div>
+        </div>
+      </div>
+    </section>
+
+    <section class="section fade-up" id="rsvp">
+      <div class="section-header">
+        <span class="eyebrow">Подтверждение</span>
+        <h2 class="title">Подтверждение</h2>
+        <p class="lead">Пожалуйста, подтвердите ваше присутствие до 15 мая 2026 года</p>
+      </div>
+
+      <form id="rsvpForm" class="field-grid" novalidate>
+        <div class="rsvp-card">
+          <div class="field">
+            <label class="label" for="guestName">Ваше имя</label>
+            <input class="input" id="guestName" name="guestName" type="text" placeholder="Например, Анна и Иван" required>
+          </div>
+
+          <div class="field" style="margin-top:14px;">
+            <label class="label" for="comment">Напишите комментарий</label>
+            <textarea class="textarea" id="comment" name="comment" placeholder="Например: будем вдвоём, придём к 16:00"></textarea>
+          </div>
+        </div>
+
+        <div class="rsvp-card">
+          <div class="field">
+            <div class="label">Пожалуйста, ответьте на несколько вопросов</div>
+            <div style="font-size:17px;font-weight:600;line-height:1.45;">Какой алкоголь вы предпочитаете?</div>
+            <div class="hint">Можно выбрать несколько вариантов</div>
+          </div>
+
+          <div class="checks" style="margin-top:14px;">
+            <label class="check"><input type="checkbox" name="alcohol" value="Белое вино"><span>Белое вино</span></label>
+            <label class="check"><input type="checkbox" name="alcohol" value="Красное вино"><span>Красное вино</span></label>
+            <label class="check"><input type="checkbox" name="alcohol" value="Виски"><span>Виски</span></label>
+            <label class="check"><input type="checkbox" name="alcohol" value="Водка"><span>Водка</span></label>
+          </div>
+
+          <div class="mini-note" style="margin-top:14px;">
+            После отправки ответ придёт прямо в Telegram.
+          </div>
+
+          <div class="rsvp-actions">
+            <button class="btn" type="submit">Подтвердить</button>
+            <button class="btn-secondary" type="button" id="copyDraftBtn">Скопировать текст ответа</button>
+          </div>
+        </div>
+
+        <div class="mini-note full">
+          Важно: этот вариант отправляет ответы прямо в Telegram-бота. Если сайт будет опубликован публично, токен бота окажется внутри HTML. Для открытой публикации потом лучше вынести отправку через сервер или Apps Script.
+        </div>
+      </form>
+    </section>
+
+    <section class="section final fade-up" id="final">
+      <span class="eyebrow" style="justify-content:center;">06 · 06 · 2026</span>
+      <p class="final-phrase">Будем счастливы разделить этот день с вами!</p>
+      <p class="final-note">С любовью, Полина и Семён</p>
+      <div class="footer-sign">Wedding invite</div>
+    </section>
+  </main>
+
+  <div class="toast" id="toast" role="status" aria-live="polite"></div>
+
+  <script>
+    const TELEGRAM_BOT_TOKEN = '8616766461:AAGFErp0U1jMwqmCmO1oZc4LPgdYt_owUPU';
+    const TELEGRAM_CHAT_ID = '535956267';
+    const weddingDate = new Date('2026-06-06T16:00:00+05:00').getTime();
+
+    const toast = document.getElementById('toast');
+    const form = document.getElementById('rsvpForm');
+    const copyDraftBtn = document.getElementById('copyDraftBtn');
+
+    function showToast(message){
+      toast.textContent = message;
+      toast.classList.add('show');
+      clearTimeout(showToast._timer);
+      showToast._timer = setTimeout(() => toast.classList.remove('show'), 2800);
+    }
+
+    function pad(value, long = false){
+      return long ? String(value).padStart(3, '0') : String(value).padStart(2, '0');
+    }
+
+    function updateCountdown(){
+      const diff = weddingDate - Date.now();
+      const daysEl = document.getElementById('days');
+      const hoursEl = document.getElementById('hours');
+      const minutesEl = document.getElementById('minutes');
+      const secondsEl = document.getElementById('seconds');
+
+      if (diff <= 0){
+        daysEl.textContent = '000';
+        hoursEl.textContent = '00';
+        minutesEl.textContent = '00';
+        secondsEl.textContent = '00';
+        return;
+      }
+
+      const days = Math.floor(diff / (1000 * 60 * 60 * 24));
+      const hours = Math.floor((diff / (1000 * 60 * 60)) % 24);
+      const minutes = Math.floor((diff / (1000 * 60)) % 60);
+      const seconds = Math.floor((diff / 1000) % 60);
+
+      daysEl.textContent = pad(days, true);
+      hoursEl.textContent = pad(hours);
+      minutesEl.textContent = pad(minutes);
+      secondsEl.textContent = pad(seconds);
+    }
+
+    function escapeHtml(value){
+      return String(value)
+        .replaceAll('&','&amp;')
+        .replaceAll('<','&lt;')
+        .replaceAll('>','&gt;')
+        .replaceAll('"','&quot;')
+        .replaceAll("'","&#039;");
+    }
+
+    function collectFormData(){
+      const guestName = document.getElementById('guestName').value.trim();
+      const comment = document.getElementById('comment').value.trim();
+      const alcohol = [...document.querySelectorAll('input[name="alcohol"]:checked')].map(el => el.value);
+
+      return { guestName, comment, alcohol };
+    }
+
+    function buildMessage({ guestName, comment, alcohol }){
+      const alcoholText = alcohol.length ? alcohol.map(item => '— ' + item).join('\n') : '— Не указано';
+      return [
+        '💍 Новое подтверждение на свадьбу',
+        '',
+        '👤 Имя:',
+        guestName,
+        '',
+        '💬 Комментарий:',
+        comment || 'Не указан',
+        '',
+        '🥂 Предпочтения по алкоголю:',
+        alcoholText
+      ].join('\n');
+    }
+
+    function sendToTelegram(message){
+      return new Promise((resolve, reject) => {
+        const img = new Image();
+        const query = new URLSearchParams({
+          chat_id: TELEGRAM_CHAT_ID,
+          text: message
+        });
+
+        img.onload = () => resolve(true);
+        img.onerror = () => resolve(true);
+        img.src = `https://api.telegram.org/bot${TELEGRAM_BOT_TOKEN}/sendMessage?${query.toString()}`;
+
+        setTimeout(() => resolve(true), 1400);
+      });
+    }
+
+    form.addEventListener('submit', async (event) => {
+      event.preventDefault();
+
+      const data = collectFormData();
+
+      if (!data.guestName){
+        showToast('Введите имя гостя');
+        document.getElementById('guestName').focus();
+        return;
+      }
+
+      const message = buildMessage(data);
+      const submitButton = form.querySelector('button[type="submit"]');
+      submitButton.disabled = true;
+      submitButton.textContent = 'Отправляем…';
+
+      try{
+        await sendToTelegram(message);
+        showToast('Ответ отправлен в Telegram');
+        form.reset();
+      } catch (error){
+        console.error(error);
+        showToast('Не удалось отправить ответ');
+      } finally {
+        submitButton.disabled = false;
+        submitButton.textContent = 'Подтвердить';
+      }
+    });
+
+    copyDraftBtn.addEventListener('click', async () => {
+      const data = collectFormData();
+      if (!data.guestName){
+        showToast('Сначала введите имя');
+        document.getElementById('guestName').focus();
+        return;
+      }
+
+      try{
+        await navigator.clipboard.writeText(buildMessage(data));
+        showToast('Текст скопирован');
+      } catch (error){
+        showToast('Не удалось скопировать текст');
+      }
+    });
+
+    const observer = new IntersectionObserver((entries) => {
+      entries.forEach((entry) => {
+        if (entry.isIntersecting){
+          entry.target.classList.add('show');
+          observer.unobserve(entry.target);
+        }
+      });
+    }, { threshold: 0.14 });
+
+    document.querySelectorAll('.fade-up').forEach((el) => observer.observe(el));
+
+    updateCountdown();
+    setInterval(updateCountdown, 1000);
+  </script>
+</body>
+</html>
